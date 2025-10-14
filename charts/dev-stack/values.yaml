@@ -3,14 +3,14 @@ ort-server:
     host: dev-dev-postgres
     name: ortserver
     schema: public
-    username: ortadmin
+    username: ortserver
     password: ortpassword
     sslMode: disable
   transport:
     rabbitmq:
       enabled: true
       serverUri: amqp://dev-dev-rabbitmq:5672
-      username: ortadmin
+      username: ortserver
       password: ortpassword
   core:
     keycloak:
@@ -18,8 +18,8 @@ ort-server:
       jwtIssuer: http://localhost:8080/realms/master
       accessTokenUrl: http://dev-dev-keycloak:8080/realms/master/protocol/openid-connect/token
       apiUrl: http://dev-dev-keycloak:8080/admin/realms/master
-      apiUser: myuser
-      apiSecret: mypassword
+      apiUser: ortserver
+      apiSecret: ortpassword
       clientId: admin-cli
       subjectClientId: ort-server
     extraVolumes:
@@ -93,9 +93,8 @@ ort-server:
 
 dev-postgres:
   auth:
-    username: ortadmin
+    username: ortserver
     password: ortpassword
-    database: ortserver
   persistence:
     enabled: false
   customUser:
@@ -121,7 +120,7 @@ dev-postgres:
 
 dev-rabbitmq:
   auth:
-    username: ortadmin
+    username: ortserver
     password: ortpassword
   persistence:
     enabled: false
@@ -144,8 +143,8 @@ dev-rabbitmq:
 
 dev-keycloak:
   keycloak:
-    adminUser: myuser
-    adminpassword: ortpassword
+    adminUser: ortserver
+    adminPassword: ortpassword
   persistence:
     enabled: false
   postgres:
