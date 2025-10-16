@@ -41,6 +41,18 @@ properties have environment variable substitutions configured.
   value: "-Dconfig.override_with_env_vars=true"
 {{- end -}}
 
+{{/* Environment variables to configure the file archive storage. */}}
+{{- define "ortserver.env.fileArchiveStorage" -}}
+{{- if .Values.storage.database.enabled }}
+- name: FILE_ARCHIVE_STORAGE_NAME
+  value: database
+- name: FILE_ARCHIVE_STORAGE_NAMESPACE
+  value: {{ .Values.storage.database.namespaces.fileArchives }}
+- name: FILE_ARCHIVE_STORAGE_IN_MEMORY_LIMIT
+  value: "{{ .Values.storage.database.inMemoryLimit }}"
+{{- end }}
+{{- end -}}
+
 {{/* Environment variables to configure the file list storage. */}}
 {{- define "ortserver.env.fileListStorage" -}}
 {{- if .Values.storage.database.enabled }}

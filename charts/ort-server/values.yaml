@@ -28,6 +28,7 @@ storage:
     enabled: true
     inMemoryLimit: 1048576
     namespaces:
+      fileArchives: fileArchives
       fileLists: fileLists
       reports: reports
 
@@ -53,6 +54,15 @@ transport:
     config:
       memoryRequest: 1Gi
       memoryLimit: 1Gi
+    evaluator:
+      memoryRequest: 4Gi
+      memoryLimit: 4Gi
+    reporter:
+      memoryRequest: 4Gi
+      memoryLimit: 4Gi
+    scanner:
+      memoryRequest: 8Gi
+      memoryLimit: 8Gi
   rabbitmq:
     enabled: true
     serverUri: ""
@@ -78,7 +88,22 @@ core:
   extraVolumes: []
   extraVolumeMounts: []
 
+advisor:
+  mountPvcs: ""
+
 analyzer:
+  mountPvcs: ""
+
+config:
+  mountPvcs: ""
+
+evaluator:
+  mountPvcs: ""
+
+reporter:
+  mountPvcs: ""
+
+scanner:
   mountPvcs: ""
 
 tasks:

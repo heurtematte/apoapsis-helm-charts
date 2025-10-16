@@ -29,7 +29,17 @@ ort-server:
     extraVolumeMounts:
       - name: secrets
         mountPath: /mnt/secrets
+  advisor:
+    mountPvcs: secrets-pvc->/mnt/secrets,r
   analyzer:
+    mountPvcs: secrets-pvc->/mnt/secrets,r
+  config:
+    mountPvcs: secrets-pvc->/mnt/secrets,r
+  evaluator:
+    mountPvcs: secrets-pvc->/mnt/secrets,r
+  reporter:
+    mountPvcs: secrets-pvc->/mnt/secrets,r
+  scanner:
     mountPvcs: secrets-pvc->/mnt/secrets,r
   ui:
     url: http://localhost:8082
